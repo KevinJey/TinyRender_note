@@ -26,7 +26,7 @@ void line(int x0, int y0, int x1, int y1, TGAImage &image, TGAColor color) {
 }
 
 int main(int argc, char** argv) {
-    TGAImage image(100, 100, TGAImage::RGB);
+    TGAImage image(100, 100, TGAImage::RGB);    // 相当于创建了一个buffer
     line(13, 20, 80, 40, image, white); //线段A
     line(20, 13, 40, 80, image, red); //线段B
     line(80, 40, 13, 20, image, red);//线段C    image.flip_vertically();
