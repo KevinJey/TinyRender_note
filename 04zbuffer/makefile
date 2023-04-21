@@ -1,7 +1,7 @@
 all:main.o model.o tgaimage.o
 	g++ -o simple main.o model.o tgaimage.o
 main.o:main.cpp
-	g++ -c main.cpp -o main.o
+	g++ -c main.cpp -o main.o -std=c++11
 model.o:model.cpp
 	g++ -o model.o -c model.cpp
 tgaimage.o:tgaimage.cpp	

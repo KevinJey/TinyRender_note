@@ -3,6 +3,9 @@
 #include "tgaimage.h"   //tga画图库
 #include "model.h"      //模型类，主要实现模型的读取
 #include "geometry.h"   //几何库，主要定义了Vec2和Vec3类型
+#include <chrono>
+#include <thread>
+
 
 //定义颜色
 const TGAColor white = TGAColor(255, 255, 255, 255);
@@ -11,6 +14,7 @@ Model *model = NULL;
 //定义宽度高度
 const int width  = 800;
 const int height = 800;
+TGAImage image(width, height, TGAImage::RGB);
 
 // drawing line algorithm
 void line(int x0, int y0, int x1, int y1, TGAImage &image, TGAColor color) {
@@ -33,6 +37,8 @@ void line(int x0, int y0, int x1, int y1, TGAImage &image, TGAColor color) {
             image.set(x,y,color);
         }
     }
+    image.write_tga_file("output.tga");
+    // std::this_thread::sleep_for(std::chrono::nanoseconds(10));
 }
 
 int main(int argc, char** argv) {
@@ -44,7 +50,6 @@ int main(int argc, char** argv) {
         model = new Model("obj/african_head.obj");
     }
     //构造tga(宽，高，指定颜色空间)
-    TGAImage image(width, height, TGAImage::RGB);
     //模型的面作为循环控制变量
     for (int i=0; i<model->nfaces(); i++) {
         //创建face数组用于保存一个face的三个顶点坐标
